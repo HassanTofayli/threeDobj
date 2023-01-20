@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #3d-object {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            overflow: scroll;
+        }
+
+        .threed-image-item {
+            user-select: none;
+            -webkit-user-drag: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            top: 0;
+            left: 0;
+            width: 300px;
+        }
+
+        #d-object {
+            user-select: none;
+            -webkit-user-drag: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            width: 300px;
+            height: 300px;
+        }
+
+        .threeDObj {
+            user-select: none;
+            -webkit-user-drag: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d-object">
+        <img src="images/H01.jpg" class="threed-image-item">
+    </div>
+
+    <p class="threeDObj">previous</p>
+    <p class="cxy">previous</p>
+
+    <script>
+        const cxy = document.querySelector(".cxy");
+        var cx, cy;
+        var view_position = 1;
+        const view_letter = "H";
+        const views = ["H", "I", "J"];
+        var image_code;
+        var img_src;
+        const last_position = 9;
+
+        const threeDObj = document.querySelector("#d-object");
+        const preview = document.querySelector(".threeDObj");
+        const image = document.querySelector(".threed-image-item")
+        let mouseMoveListenerActive = false;
+        threeDObj.addEventListener("scroll", function (event) {
+            if (event.target === div) {
+                event.preventDefault();
+            }
+        });
+
+
+        function mouseDownListener() {
+            if (!mouseMoveListenerActive) {
+                cx = event.clientX;
+                cy = event.clientY;
+                threeDObj.addEventListener("mousemove", mouseMoveListener);
+                mouseMoveListenerActive = true;
+            }
+            console.log("Mouse down");
+            preview.innerHTML = "Mouse down";
+            cxy.innerHTML = cx + ", " + cy;
+        }
+
+        function mouseMoveListener(event) {
+            cxy.innerHTML = cx + ", " + cy;
+
+            preview.innerHTML = "Mouse position: " + event.clientX + ", " + event.clientY;
+            //  && view_position <= last_position
+            if (cx > event.clientX + 10) {
+                if (view_position == last_position) {
+                    view_position = 1;
+                    cx = event.clientX;
+                    cy = event.clientY;
+                }
+                else {
+                    view_position++;
+                    cx = event.clientX;
+                    cy = event.clientY;
+                }
+            }
+            // cx - 10 > event.clientX && view_position >= 1
+            else if (cx < event.clientX - 10) {
+                if (view_position == 1) {
+                    view_position = last_position;
+                    cx = event.clientX;
+                    cy = event.clientY;
+                }
+                else {
+                    view_position--;
+                    cx = event.clientX;
+                    cy = event.clientY;
+                }
+            }
+            // else if (cy + 10 < event.clientY) {
+
+            // }
+            // else if (cy - 10 > event.clientY) {
+
+            // }
+
+            write_src(view_position, view_letter)
+
+        }
+
+        function write_src(vp, letter) {
+            let s = vp.toString().padStart(2, '0');
+
+            image_code = letter + s;
+            img_src = "images/" + image_code + ".jpg";
+            console.log(img_src);
+            image.setAttribute("src", img_src);
+        }
+
+        function mouseUpListener() {
+            if (mouseMoveListenerActive) {
+                threeDObj.removeEventListener("mousemove", mouseMoveListener);
+                mouseMoveListenerActive = false;
+            }
+            console.log("Mouse up");
+            preview.innerHTML = "Mouse up";
+        }
+
+        threeDObj.addEventListener("mousedown", mouseDownListener);
+        threeDObj.addEventListener("mouseup", mouseUpListener);
+    </script>
+</body>
+
+</html>
