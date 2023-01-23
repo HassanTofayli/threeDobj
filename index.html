@@ -80,6 +80,7 @@
                 cx = event.clientX;
                 cy = event.clientY;
                 threeDObj.addEventListener("mousemove", mouseMoveListener);
+                threeDObj.addEventListener("touchmove", mouseMoveListener);
                 mouseMoveListenerActive = true;
             }
             console.log("Mouse down");
@@ -149,6 +150,7 @@
         function mouseUpListener() {
             if (mouseMoveListenerActive) {
                 threeDObj.removeEventListener("mousemove", mouseMoveListener);
+                threeDObj.removeEventListener("touchmove", mouseMoveListener);
                 mouseMoveListenerActive = false;
             }
             console.log("Mouse up");
@@ -156,7 +158,9 @@
         }
 
         threeDObj.addEventListener("mousedown", mouseDownListener);
+        threeDObj.addEventListener("touchstart", mouseDownListener);
         threeDObj.addEventListener("mouseup", mouseUpListener);
+        threeDObj.addEventListener("touchend", mouseUpListener);
     </script>
 </body>
 
