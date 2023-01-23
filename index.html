@@ -39,6 +39,9 @@
             -moz-user-select: none;
             -webkit-user-select: none;
         }
+        .spacing{
+            height: 1000px;
+        }
     </style>
 </head>
 
@@ -49,7 +52,7 @@
 
     <p class="threeDObj">previous</p>
     <p class="cxy">previous</p>
-
+    <p class="spacing"></p>
     <script>
         const cxy = document.querySelector(".cxy");
         var cx, cy;
@@ -72,6 +75,7 @@
 
 
         function mouseDownListener() {
+
             if (!mouseMoveListenerActive) {
                 cx = event.clientX;
                 cy = event.clientY;
@@ -84,8 +88,6 @@
         }
 
         function mouseMoveListener(event) {
-            event.stopPropagation();
-
             cxy.innerHTML = cx + ", " + cy;
 
             preview.innerHTML = "Mouse position: " + event.clientX + ", " + event.clientY;
