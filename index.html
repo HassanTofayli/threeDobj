@@ -67,12 +67,7 @@
         const preview = document.querySelector(".threeDObj");
         const image = document.querySelector(".threed-image-item")
         let mouseMoveListenerActive = false;
-        threeDObj.addEventListener("scroll", function (event) {
-            if (event.target === div) {
-                event.preventDefault();
-            }
-        });
-
+        
 
         function mouseDownListener() {
 
@@ -80,7 +75,7 @@
                 cx = event.clientX;
                 cy = event.clientY;
                 threeDObj.addEventListener("mousemove", mouseMoveListener);
-                threeDObj.addEventListener("touchmove", mouseMoveListener);
+                threeDObj.addEventListener("touchmove", touchMoveListener);
                 mouseMoveListenerActive = true;
             }
             console.log("Mouse down");
@@ -102,6 +97,7 @@
         }
 
         function touchMoveListener(event){
+            event.preventDefault();
 
             cxy.innerHTML = cx + ", " + cy;
 
