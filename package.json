@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "prevent-parent-scroll": "^0.0.6"
+  }
+}
