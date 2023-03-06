@@ -50,6 +50,18 @@
         <img src="images/101.jpg" class="threed-image-item">
     </div>
 
+
+
+    <img style="display: none;" src="images/101.jpg" alt="">
+    <img style="display: none;" src="images/102.jpg" alt="">
+    <img style="display: none;" src="images/103.jpg" alt="">
+    <img style="display: none;" src="images/104.jpg" alt="">
+    <img style="display: none;" src="images/105.jpg" alt="">
+    <img style="display: none;" src="images/106.jpg" alt="">
+    <img style="display: none;" src="images/107.jpg" alt="">
+    <img style="display: none;" src="images/108.jpg" alt="">
+    <img style="display: none;" src="images/108.jpg" alt="">
+
     <p class="threeDObj">previous</p>
     <p class="cxy">previous</p>
     <p class="spacing"></p>
@@ -128,16 +140,16 @@
                     cy = event.touches[0].clientY;
                 }
             }
-            if (cy > event.clientY + 10) {
+            if (cy > event.touches[0].clientY + 10) {
                 if (view_position == last_position) {
                     view_position = 1;
-                    cx = event.clientX;
-                    cy = event.clientY;
+                    cx = event.touches[0].clientX;
+                    cy = event.touches[0].clientY;
                 }
                 else {
                     view_position++;
-                    cx = event.clientX;
-                    cy = event.clientY;
+                    cx = event.touches[0].clientX;
+                    cy = event.touches[0].clientY;
                 }
             }
             else if (cy - 10 > event.clientY) {
